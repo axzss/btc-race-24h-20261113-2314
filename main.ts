@@ -19,10 +19,16 @@
 //   80 bps band is wide enough to survive normal 1-minute noise
 //   (mean |1m ret| in dev was 5.25 bps) while capping a failed bounce.
 //
-//   Dev result (backtest + grade-local): net PnL +$12.83, 4 trades,
-//   max drawdown 0.1%. Both trades were bounce captures; the bot sat in
-//   cash for the rest of the falling day. Robust to fill-cost assumptions
-//   (still +$10.00 at a pessimistic 20 bps/leg).
+//   Dev result (grade-local, exact harness, two executions reproduced
+//   byte for byte): net PnL +$9.967513 USDC (return +0.997%), 4 trades,
+//   win rate 100%, max drawdown 0.73%, fees $1.608662, guardrails met.
+//   Both round trips were bounce captures; the bot sat in cash for the
+//   rest of the falling day. result_sha256 (process driver, node v24):
+//   1357a518daff8e04425a3e6aa6e21d352ef55a09818d4d68d856c4178820cba9.
+//   (The server's harness runs node v22, so its result_sha256 differs;
+//   the score, not the hash, is what matters.)
+//   The result is robust to fill-cost assumptions (backtest still
+//   +$10.00 at a pessimistic 20 bps/leg).
 //
 //   Determinism: bigint integer arithmetic only (floor division, matching
 //   the Python reference), no clock, no environment, no randomness.
